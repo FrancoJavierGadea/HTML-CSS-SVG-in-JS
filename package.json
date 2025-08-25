@@ -3,7 +3,7 @@
     "displayName": "Template Comment Highlighter",
     "description": "Highlight template strings with /*html*/ or /*svg*/ as HTML or SVG inside JS/TS files",
     "version": "0.0.1",
-    "publisher": "your-name",
+    "publisher": "Franco Javier Gadea",
     "engines": {
         "vscode": "^1.85.0"
     },
@@ -11,7 +11,7 @@
     "contributes": {
         "grammars": [
             {
-                "path": "./syntaxes/inyections-js.json",
+                "path": "./syntaxes/inyections_js-html-css-svg.json",
                 "scopeName": "template.comment.injection",
                 "injectTo": ["source.js", "source.jsx", "source.js.jsx", "source.ts", "source.tsx", "source.ts.tsx"]
             }

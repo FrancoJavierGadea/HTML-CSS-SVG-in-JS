@@ -10,11 +10,8 @@ const html = /*html*/`
 `;
 
 const svg = /*svg*/`
-    <svg width="50" height="50">
+    <svg width="50" height="#fff">
       	<circle cx="25" cy="25" r="20" fill="red" />
     </svg>
 `;
-
-
-
 

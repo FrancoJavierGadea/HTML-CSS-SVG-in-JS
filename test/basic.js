@@ -16,5 +16,4 @@ const svg = /*svg*/`
 `;
 
 
-
-
+let color = '#ffffff';
