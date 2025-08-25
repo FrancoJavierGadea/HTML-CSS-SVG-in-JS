@@ -11,9 +11,9 @@
     "contributes": {
         "grammars": [
             {
-                "path": "./syntaxes/inyections.json",
+                "path": "./syntaxes/inyections-js.json",
                 "scopeName": "template.comment.injection",
-                "injectTo": ["source.js", "source.ts"]
+                "injectTo": ["source.js", "source.jsx", "source.js.jsx", "source.ts", "source.tsx", "source.ts.tsx"]
             }
         ]
     }
