@@ -10,13 +10,41 @@ Highlight **template strings** in `JavaScript` and `TypeScript` files with `HTML
 
 Colorizes template strings that start with:
 
-- `/*html*/` highlighted as HTML
-- `/*css*/` highlighted as CSS
-- `/*svg*/` highlighted as SVG
+- `/*html*/` highlighted as `HTML`
+- `/*css*/` highlighted as `CSS`
+- `/*svg*/` highlighted as `SVG`
 
 Works in `.js`, `.ts`, `.jsx`, and `.tsx` files.
 
 No extra setup required — just install and start coding.
+
+### Snippets
+
+Quickly insert template literals for `HTML`, `CSS`, and `SVG`:
+
+- `html template block`:
+
+    ```js
+    /*html*/`
+    
+    `
+    ```
+
+- `css template block`:
+
+    ```js
+    /*css*/`
+    
+    `
+    ```
+
+- `svg template block`:
+
+    ```js
+    /*svg*/`
+    
+    `
+    ```
 
 <br>
 
@@ -76,17 +104,18 @@ const icon = /*svg*/`
 - Run
 
 	```shell
-	code --install-extension HTML-CSS-SVG-in-JS-0.0.1.vsix
+	code --install-extension html-css-svg-in-js-0.0.1.vsix
 	```
 
 <br>
 
-## Sintax reference
+### 📝 Sintax reference
 
 - [text.html.basic](https://github.com/microsoft/vscode/blob/main/extensions/html/syntaxes/html.tmLanguage.json)
 - [source.css](https://github.com/microsoft/vscode/blob/main/extensions/css/syntaxes/css.tmLanguage.json)
 - [text.xml](https://github.com/microsoft/vscode/blob/main/extensions/xml/syntaxes/xml.tmLanguage.json)
 
+<br>
 
 ## 📄 License
 

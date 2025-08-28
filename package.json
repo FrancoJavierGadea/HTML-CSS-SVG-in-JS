@@ -1,27 +1,28 @@
 {
-    "name": "html-css-svg-in-js",
-    "displayName": "HTML CSS SVG in JS",
+    "name": "vsc-extension-html-css-svg-in-js",
     "description": "Syntax highlighting for inline HTML, CSS, and SVG in JavaScript and TypeScript template strings using /*html*/, /*css*/ or /*svg*/.",
+    "keywords": [ "html", "css", "svg", "syntax highlighting", "template strings", "inline html", "inline css", "inline svg", "javascript", "typescript", "jsx", "tsx", "vscode extension"],
     "version": "0.0.1",
-    "publisher": "1812",
     "author": "Franco Javier Gadea",
     "repository": {
         "type": "git",
         "url": "https://github.com/FrancoJavierGadea/HTML-CSS-SVG-in-JS"
     },
-    "keywords": [ "html", "css", "svg", "syntax highlighting", "template strings", "inline html", "inline css", "inline svg", "javascript", "typescript", "jsx", "tsx", "vscode extension"],
     "devDependencies": {
         "@vscode/vsce": "^3.6.0"
     },
     "scripts": {
         "build": "vsce package --out dist/html-css-svg-in-js-0.0.1.vsix"
     },
-    "engines": {
-        "vscode": "^1.85.0"
-    },
+    "displayName": "HTML CSS SVG in JS",
+    "publisher": "1812",
     "categories": [
         "Programming Languages"
     ],
+    "icon": "./logo.png",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
     "contributes": {
         "grammars": [
             {
