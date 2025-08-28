@@ -1,19 +1,29 @@
 
+let color = '#ffffff';
+let attribute = 'fill';
+let value = 'red';
+
 const css = /*css*/`
     .box {
-        color: #fff;
+        color: ${color};
     }
 `;
 
 const html = /*html*/`
-    <div class="box">Hola Mundo ${css}</div>
+    <div class="box" value="${value}" >Hola Mundo ${css}</div>
 `;
 
 const svg = /*svg*/`
     <svg width="50" height="50">
-      	<circle cx="25" cy="25" r="20" fill="red" />
+      	<circle cx="25" cy="25" r="20" fill="red"  fill="${css}" ${attribute}="${value}" />
+
+        <style>
+        
+        </style>
+
+        <f>
+        </f>
     </svg>
 `;
 
 
-let color = '#ffffff';

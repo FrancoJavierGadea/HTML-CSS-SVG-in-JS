@@ -6,7 +6,7 @@ const css = /*css*/`
 `;
 
 const html = /*html*/`
-    <div class="box">Hola Mundo ${css}</div>
+    <div class="box" ${css}="${}">Hola Mundo ${css}</div>
 `;
 
 const svg = /*svg*/`

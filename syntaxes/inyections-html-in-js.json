@@ -1,0 +1,181 @@
+{
+	"scopeName": "template.comment.html.injection",
+	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded), L:source.tsx -comment -(string -meta.embedded)",
+	"patterns": [
+		{
+			"begin": "/\\*html\\*/\\s*`",
+			"end": "`",
+			"name": "string.quoted.template.html.js",
+			"patterns": [
+				{
+					"comment": "Expresiones ${} con máxima prioridad - se aplican antes que las reglas HTML",
+					"begin": "(\\$\\{)",
+					"beginCaptures": {
+						"1": { "name": "punctuation.section.embedded.begin.js" }
+					},
+					"end": "(\\})",
+					"endCaptures": {
+						"1": { "name": "punctuation.section.embedded.end.js" }
+					},
+					"name": "source.js.embedded.expression",
+					"patterns": [
+						{
+							"comment": "Expresiones ${} anidadas",
+							"begin": "(\\$\\{)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.section.embedded.begin.js"
+								}
+							},
+							"end": "(\\})",
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.section.embedded.end.js"
+								}
+							},
+							"name": "source.js.embedded.expression",
+							"patterns": [{ "include": "$self" }]
+						},
+						{ "include": "source.js" }
+					]
+				},
+				{
+					"comment": "HTML con patrones personalizados para manejar ${} en atributos",
+					"patterns": [
+						{
+							"comment": "Tags HTML con atributos que pueden contener ${}",
+							"begin": "(<)([a-zA-Z0-9:-]+)",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.definition.tag.begin.html"
+								},
+								"2": { "name": "entity.name.tag.html" }
+							},
+							"end": "(>)",
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.definition.tag.end.html"
+								}
+							},
+							"name": "meta.tag.html",
+							"patterns": [
+								{
+									"comment": "Expresiones ${} en atributos con prioridad sobre valores de atributos",
+									"begin": "(\\$\\{)",
+									"beginCaptures": {
+										"1": {
+											"name": "punctuation.section.embedded.begin.js"
+										}
+									},
+									"end": "(\\})",
+									"endCaptures": {
+										"1": {
+											"name": "punctuation.section.embedded.end.js"
+										}
+									},
+									"name": "source.js.embedded.expression"
+								},
+								{
+									"comment": "Nombres de atributos",
+									"match": "\\b([a-zA-Z-]+)(?=\\s*=)",
+									"name": "entity.other.attribute-name.html"
+								},
+								{
+									"comment": "Valores de atributos con comillas dobles",
+									"begin": "=\\s*(\")",
+									"beginCaptures": {
+										"1": {
+											"name": "punctuation.definition.string.begin.html"
+										}
+									},
+									"end": "(\")",
+									"endCaptures": {
+										"1": {
+											"name": "punctuation.definition.string.end.html"
+										}
+									},
+									"name": "string.quoted.double.html",
+									"patterns": [
+										{
+											"comment": "Expresiones ${} dentro de valores de atributos con comillas dobles",
+											"begin": "(\\$\\{)",
+											"beginCaptures": {
+												"1": {
+													"name": "punctuation.section.embedded.begin.js"
+												}
+											},
+											"end": "(\\})",
+											"endCaptures": {
+												"1": {
+													"name": "punctuation.section.embedded.end.js"
+												}
+											},
+											"name": "source.js.embedded.expression",
+											"patterns": [
+												{ "include": "source.js" }
+											]
+										}
+									]
+								},
+								{
+									"comment": "Valores de atributos con comillas simples",
+									"begin": "=\\s*(')",
+									"beginCaptures": {
+										"1": {
+											"name": "punctuation.definition.string.begin.html"
+										}
+									},
+									"end": "(')",
+									"endCaptures": {
+										"1": {
+											"name": "punctuation.definition.string.end.html"
+										}
+									},
+									"name": "string.quoted.single.html",
+									"patterns": [
+										{
+											"comment": "Expresiones ${} dentro de valores de atributos con comillas simples",
+											"begin": "(\\$\\{)",
+											"beginCaptures": {
+												"1": {
+													"name": "punctuation.section.embedded.begin.js"
+												}
+											},
+											"end": "(\\})",
+											"endCaptures": {
+												"1": {
+													"name": "punctuation.section.embedded.end.js"
+												}
+											},
+											"name": "source.js.embedded.expression",
+											"patterns": [
+												{ "include": "source.js" }
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"comment": "Tags de cierre",
+							"match": "(</)([a-zA-Z0-9:-]+)(>)",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.tag.begin.html"
+								},
+								"2": { "name": "entity.name.tag.html" },
+								"3": {
+									"name": "punctuation.definition.tag.end.html"
+								}
+							}
+						},
+						{
+							"comment": "Contenido HTML general",
+							"include": "text.html.basic"
+						}
+					]
+				}
+			]
+		}
+	]
+}

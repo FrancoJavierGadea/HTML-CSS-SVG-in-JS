@@ -11,9 +11,19 @@
     "contributes": {
         "grammars": [
             {
-                "path": "./syntaxes/inyections_js-html-css-svg.json",
-                "scopeName": "template.comment.injection",
-                "injectTo": ["source.js", "source.jsx", "source.js.jsx", "source.ts", "source.tsx", "source.ts.tsx"]
+                "scopeName": "template.comment.html.injection",
+                "path": "./syntaxes/inyections-html-in-js.json",
+                "injectTo": ["source.js", "source.ts", "source.tsx"]
+            },
+            {
+                "scopeName": "template.comment.css.injection",
+                "path": "./syntaxes/inyections-css-in-js.json",
+                "injectTo": ["source.js", "source.ts", "source.tsx"]
+            },
+            {
+                "scopeName": "template.comment.svg.injection",
+                "path": "./syntaxes/inyections-svg-in-js.json",
+                "injectTo": ["source.js", "source.ts", "source.tsx"]
             }
         ]
     }
