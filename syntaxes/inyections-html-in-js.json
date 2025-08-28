@@ -1,6 +1,6 @@
 {
 	"scopeName": "template.comment.html.injection",
-	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded)",
+	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded), L:source.tsx -comment -(string -meta.embedded)",
 	"patterns": [
 		{
 			"comment": "Template literal HTML precedido por comentario /*html*/",
@@ -234,6 +234,10 @@
 					"name": "text.html"
 				}
 			]
+		},
+		{
+			"comment": "Fallback para HTML",
+			"include": "text.html.basic"
 		}
 	]
 }

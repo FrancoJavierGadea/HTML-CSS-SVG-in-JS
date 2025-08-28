@@ -1,0 +1,17 @@
+{
+	"HTML block": {
+		"prefix": "html template block",
+		"body": ["/*html*/`", "$0", "`"],
+		"description": "Insert /*html*/ template block"
+	},
+	"CSS block": {
+		"prefix": "css template block",
+		"body": ["/*css*/`", "$0", "`"],
+		"description": "Insert /*css*/ template block"
+	},
+	"SVG block": {
+		"prefix": "svg template block",
+		"body": ["/*svg*/`", "$0", "`"],
+		"description": "Insert /*svg*/ template block"
+	}
+}

@@ -51,6 +51,24 @@
                     "source.tsx"
                 ]
             }
+        ],
+         "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/template-comment-blocks.json"
+            },
+            {
+                "language": "typescript",
+                "path": "./snippets/template-comment-blocks.json"
+            },
+            {
+                "language": "javascriptreact",
+                "path": "./snippets/template-comment-blocks.json"
+            },
+            {
+                "language": "typescriptreact",
+                "path": "./snippets/template-comment-blocks.json"
+            }
         ]
     }
 }

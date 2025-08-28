@@ -285,6 +285,10 @@
 					]
 				}
 			]
+		},
+		{
+			"comment": "Fallback for XML",
+			"include": "text.xml"
 		}
 	]
 }

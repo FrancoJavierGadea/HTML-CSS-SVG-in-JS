@@ -81,6 +81,13 @@ const icon = /*svg*/`
 
 <br>
 
+## Sintax reference
+
+- [text.html.basic](https://github.com/microsoft/vscode/blob/main/extensions/html/syntaxes/html.tmLanguage.json)
+- [source.css](https://github.com/microsoft/vscode/blob/main/extensions/css/syntaxes/css.tmLanguage.json)
+- [text.xml](https://github.com/microsoft/vscode/blob/main/extensions/xml/syntaxes/xml.tmLanguage.json)
+
+
 ## 📄 License
 
 MIT License

@@ -19,174 +19,124 @@
 			"name": "string.quoted.template.css.js",
 			"patterns": [
 				{
-					"comment": "Expresiones ${} con máxima prioridad - se aplican antes que las reglas CSS",
-					"begin": "(\\$\\{)",
-					"beginCaptures": {
-						"1": { "name": "punctuation.section.embedded.begin.js" }
-					},
-					"end": "(\\})",
-					"endCaptures": {
-						"1": { "name": "punctuation.section.embedded.end.js" }
-					},
-					"name": "source.js.embedded.expression",
+					"comment": "Comentarios CSS - PRIORIDAD MÁS ALTA",
+					"begin": "/\\*",
+					"end": "\\*/|(?=`)",
+					"name": "comment.block.css",
 					"patterns": [
 						{
-							"comment": "Expresiones ${} anidadas",
+							"comment": "Expresiones ${} en comentarios CSS",
 							"begin": "(\\$\\{)",
 							"beginCaptures": {
 								"1": {
 									"name": "punctuation.section.embedded.begin.js"
 								}
 							},
-							"end": "(\\})",
+							"end": "(\\})|(?=`)",
 							"endCaptures": {
 								"1": {
 									"name": "punctuation.section.embedded.end.js"
 								}
 							},
 							"name": "source.js.embedded.expression",
-							"patterns": [{ "include": "$self" }]
-						},
-						{ "include": "source.js" }
+							"patterns": [{ "include": "source.js" }]
+						}
 					]
 				},
 				{
-					"comment": "CSS con patrones personalizados para manejar ${} en todas las partes",
+					"comment": "Expresiones ${} - SEGUNDA PRIORIDAD",
+					"begin": "(\\$\\{)",
+					"beginCaptures": {
+						"1": { "name": "punctuation.section.embedded.begin.js" }
+					},
+					"end": "(\\})|(?=`)",
+					"endCaptures": {
+						"1": { "name": "punctuation.section.embedded.end.js" }
+					},
+					"name": "source.js.embedded.expression",
+					"patterns": [{ "include": "source.js" }]
+				},
+				{
+					"comment": "At-rules (@media, @keyframes, etc.)",
+					"begin": "(@[a-zA-Z-]+)",
+					"beginCaptures": {
+						"1": { "name": "keyword.control.at-rule.css" }
+					},
+					"end": "(?=[{;}])|(?=`)",
+					"name": "meta.at-rule.css"
+				},
+				{
+					"comment": "Bloques CSS - SIN NESTING",
+					"begin": "\\{",
+					"end": "\\}|(?=`)",
+					"name": "meta.property-list.css",
 					"patterns": [
 						{
-							"comment": "Comentarios CSS",
+							"comment": "Comentarios dentro de bloques",
 							"begin": "/\\*",
-							"end": "\\*/",
-							"name": "comment.block.css",
-							"patterns": [
-								{
-									"comment": "Expresiones ${} en comentarios CSS",
-									"begin": "(\\$\\{)",
-									"beginCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.begin.js"
-										}
-									},
-									"end": "(\\})",
-									"endCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.end.js"
-										}
-									},
-									"name": "source.js.embedded.expression",
-									"patterns": [{ "include": "source.js" }]
-								}
-							]
+							"end": "\\*/|(?=`)",
+							"name": "comment.block.css"
 						},
 						{
-							"comment": "At-rules (@media, @keyframes, etc.)",
-							"begin": "(@[a-zA-Z-]+)",
+							"comment": "Expresiones ${} dentro de bloques",
+							"begin": "(\\$\\{)",
 							"beginCaptures": {
-								"1": { "name": "keyword.control.at-rule.css" }
+								"1": {
+									"name": "punctuation.section.embedded.begin.js"
+								}
 							},
-							"end": "(?=[{;}])",
-							"name": "meta.at-rule.css",
-							"patterns": [
-								{
-									"comment": "Expresiones ${} en at-rules",
-									"begin": "(\\$\\{)",
-									"beginCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.begin.js"
-										}
-									},
-									"end": "(\\})",
-									"endCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.end.js"
-										}
-									},
-									"name": "source.js.embedded.expression",
-									"patterns": [{ "include": "source.js" }]
+							"end": "(\\})|(?=`)",
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.section.embedded.end.js"
 								}
-							]
+							},
+							"name": "source.js.embedded.expression",
+							"patterns": [{ "include": "source.js" }]
 						},
 						{
-							"comment": "Selectores CSS",
-							"begin": "^\\s*(?![{}@])",
-							"end": "(?={)",
-							"name": "meta.selector.css",
-							"patterns": [
-								{
-									"comment": "Expresiones ${} en selectores",
-									"begin": "(\\$\\{)",
-									"beginCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.begin.js"
-										}
-									},
-									"end": "(\\})",
-									"endCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.end.js"
-										}
-									},
-									"name": "source.js.embedded.expression",
-									"patterns": [{ "include": "source.js" }]
+							"comment": "Propiedades CSS",
+							"match": "\\s*([a-zA-Z-]+)\\s*(:)",
+							"captures": {
+								"1": {
+									"name": "support.type.property-name.css"
 								},
-								{
-									"comment": "Clases CSS",
-									"match": "(\\.)([a-zA-Z_-][a-zA-Z0-9_-]*)",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.entity.css"
-										},
-										"2": {
-											"name": "entity.other.attribute-name.class.css"
-										}
-									}
-								},
-								{
-									"comment": "IDs CSS",
-									"match": "(#)([a-zA-Z_-][a-zA-Z0-9_-]*)",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.entity.css"
-										},
-										"2": {
-											"name": "entity.other.attribute-name.id.css"
-										}
-									}
-								},
-								{
-									"comment": "Elementos HTML",
-									"match": "\\b([a-zA-Z0-9_-]+)\\b",
-									"name": "entity.name.tag.css"
-								},
-								{
-									"comment": "Pseudo-clases y pseudo-elementos",
-									"match": "(:+)([a-zA-Z0-9_-]+)",
-									"captures": {
-										"1": {
-											"name": "punctuation.definition.entity.css"
-										},
-										"2": {
-											"name": "entity.other.attribute-name.pseudo-class.css"
-										}
-									}
+								"2": {
+									"name": "punctuation.separator.key-value.css"
 								}
-							]
+							}
 						},
 						{
-							"comment": "Bloques de propiedades CSS",
-							"begin": "{",
-							"end": "}",
-							"name": "meta.property-list.css",
+							"comment": "Valores de propiedades",
+							"begin": "(:)\\s*",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.separator.key-value.css"
+								}
+							},
+							"end": "(;)|(?=\\})|(?=`)",
+							"endCaptures": {
+								"1": {
+									"name": "punctuation.terminator.rule.css"
+								}
+							},
+							"name": "meta.property-value.css",
 							"patterns": [
 								{
-									"comment": "Expresiones ${} en propiedades CSS - máxima prioridad",
+									"comment": "Comentarios en valores",
+									"begin": "/\\*",
+									"end": "\\*/|(?=`)",
+									"name": "comment.block.css"
+								},
+								{
+									"comment": "Expresiones ${} en valores",
 									"begin": "(\\$\\{)",
 									"beginCaptures": {
 										"1": {
 											"name": "punctuation.section.embedded.begin.js"
 										}
 									},
-									"end": "(\\})",
+									"end": "(\\})|(?=`)",
 									"endCaptures": {
 										"1": {
 											"name": "punctuation.section.embedded.end.js"
@@ -196,131 +146,85 @@
 									"patterns": [{ "include": "source.js" }]
 								},
 								{
-									"comment": "Propiedades CSS",
-									"match": "\\s*([a-zA-Z-]+)\\s*(:)",
+									"comment": "Strings con comillas dobles",
+									"begin": "\"",
+									"end": "\"|(?=`)",
+									"name": "string.quoted.double.css"
+								},
+								{
+									"comment": "Strings con comillas simples",
+									"begin": "'",
+									"end": "'|(?=`)",
+									"name": "string.quoted.single.css"
+								},
+								{
+									"comment": "Funciones CSS",
+									"match": "([a-zA-Z-]+)(\\()",
 									"captures": {
 										"1": {
-											"name": "support.type.property-name.css"
+											"name": "support.function.css"
 										},
 										"2": {
-											"name": "punctuation.separator.key-value.css"
+											"name": "punctuation.section.function.begin.css"
 										}
 									}
 								},
 								{
-									"comment": "Valores de propiedades con ${} incluido",
-									"begin": "(:)\\s*",
-									"beginCaptures": {
+									"comment": "Colores hexadecimales",
+									"match": "(#)([0-9a-fA-F]{3,8})\\b",
+									"captures": {
 										"1": {
-											"name": "punctuation.separator.key-value.css"
+											"name": "punctuation.definition.constant.css"
+										},
+										"2": {
+											"name": "constant.other.color.rgb-value.css"
 										}
-									},
-									"end": "(;|(?=}))",
-									"endCaptures": {
+									}
+								},
+								{
+									"comment": "Números con unidades",
+									"match": "(-?\\d*\\.\\d+|\\d+)(%|px|em|rem|vh|vw|pt|pc|in|cm|mm|ex|ch|vmin|vmax|fr|deg|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?\\b",
+									"captures": {
 										"1": {
-											"name": "punctuation.terminator.rule.css"
+											"name": "constant.numeric.css"
+										},
+										"2": {
+											"name": "keyword.other.unit.css"
 										}
-									},
-									"name": "meta.property-value.css",
-									"patterns": [
-										{
-											"comment": "Expresiones ${} en valores de propiedades",
-											"begin": "(\\$\\{)",
-											"beginCaptures": {
-												"1": {
-													"name": "punctuation.section.embedded.begin.js"
-												}
-											},
-											"end": "(\\})",
-											"endCaptures": {
-												"1": {
-													"name": "punctuation.section.embedded.end.js"
-												}
-											},
-											"name": "source.js.embedded.expression",
-											"patterns": [
-												{ "include": "source.js" }
-											]
-										},
-										{
-											"comment": "Funciones CSS",
-											"match": "([a-zA-Z-]+)(\\()",
-											"captures": {
-												"1": {
-													"name": "support.function.css"
-												},
-												"2": {
-													"name": "punctuation.section.function.begin.css"
-												}
-											}
-										},
-										{
-											"comment": "Colores hexadecimales",
-											"match": "(#)([0-9a-fA-F]{3,8})\\b",
-											"captures": {
-												"1": {
-													"name": "punctuation.definition.constant.css"
-												},
-												"2": {
-													"name": "constant.other.color.rgb-value.css"
-												}
-											}
-										},
-										{
-											"comment": "Números con unidades",
-											"match": "(-?\\d*\\.\\d+|\\d+)(%|px|em|rem|vh|vw|pt|pc|in|cm|mm|ex|ch|vmin|vmax|fr|deg|rad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)?\\b",
-											"captures": {
-												"1": {
-													"name": "constant.numeric.css"
-												},
-												"2": {
-													"name": "keyword.other.unit.css"
-												}
-											}
-										},
-										{
-											"comment": "Palabras clave CSS",
-											"match": "\\b(auto|inherit|initial|unset|none|normal|bold|italic|underline|left|right|center|top|bottom|middle|block|inline|flex|grid|absolute|relative|fixed|static|transparent|solid|dashed|dotted|double)\\b",
-											"name": "support.constant.property-value.css"
-										},
-										{
-											"comment": "Strings en CSS",
-											"begin": "\"",
-											"end": "\"",
-											"name": "string.quoted.double.css",
-											"patterns": [
-												{
-													"comment": "Expresiones ${} en strings CSS",
-													"begin": "(\\$\\{)",
-													"beginCaptures": {
-														"1": {
-															"name": "punctuation.section.embedded.begin.js"
-														}
-													},
-													"end": "(\\})",
-													"endCaptures": {
-														"1": {
-															"name": "punctuation.section.embedded.end.js"
-														}
-													},
-													"name": "source.js.embedded.expression",
-													"patterns": [
-														{
-															"include": "source.js"
-														}
-													]
-												}
-											]
-										}
-									]
+									}
+								},
+								{
+									"comment": "Palabras clave CSS",
+									"match": "\\b(auto|inherit|initial|unset|none|normal|bold|italic|underline|left|right|center|top|bottom|middle|block|inline|flex|grid|absolute|relative|fixed|static|transparent|solid|dashed|dotted|double)\\b",
+									"name": "support.constant.property-value.css"
 								}
 							]
-						},
-						{
-							"comment": "Fallback para CSS general",
-							"include": "source.css"
 						}
 					]
+				},
+				{
+					"comment": "Selectores CSS",
+					"match": "([.#]?)([a-zA-Z0-9_-]+)",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.entity.css"
+						},
+						"2": {
+							"name": "entity.other.attribute-name.class.css"
+						}
+					}
+				},
+				{
+					"comment": "Pseudo-clases y pseudo-elementos",
+					"match": "(:+)([a-zA-Z0-9_-]+)",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.entity.css"
+						},
+						"2": {
+							"name": "entity.other.attribute-name.pseudo-class.css"
+						}
+					}
 				}
 			]
 		}
