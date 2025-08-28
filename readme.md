@@ -4,6 +4,8 @@
 
 Highlight **template strings** in `JavaScript` and `TypeScript` files with `HTML`, `CSS`, or `SVG` syntax highlighting using **tagged comments**.
 
+> [**Github**](https://github.com/FrancoJavierGadea/HTML-CSS-SVG-in-JS)
+
 <br>
 
 ## ✨ Features
@@ -18,7 +20,7 @@ Works in `.js`, `.ts`, `.jsx`, and `.tsx` files.
 
 No extra setup required — just install and start coding.
 
-### Snippets
+### 📝 Snippets
 
 Quickly insert template literals for `HTML`, `CSS`, and `SVG`:
 
@@ -109,14 +111,18 @@ const icon = /*svg*/`
 
 <br>
 
-### 📝 Sintax reference
+## 💖 Support This Project
 
-- [text.html.basic](https://github.com/microsoft/vscode/blob/main/extensions/html/syntaxes/html.tmLanguage.json)
-- [source.css](https://github.com/microsoft/vscode/blob/main/extensions/css/syntaxes/css.tmLanguage.json)
-- [text.xml](https://github.com/microsoft/vscode/blob/main/extensions/xml/syntaxes/xml.tmLanguage.json)
+If you find this extension helpful and would like to support its development, consider buying me a coffee!
+
+Your support helps me keep improving and maintaining this project. Every little bit is appreciated 🙌
+
+☕ [Buy me a coffee](https://buymeacoffee.com/1812)
 
 <br>
 
 ## 📄 License
 
+```text
 MIT License
+```
