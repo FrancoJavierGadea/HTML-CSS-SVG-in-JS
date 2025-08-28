@@ -1,179 +1,237 @@
 {
 	"scopeName": "template.comment.html.injection",
-	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded), L:source.tsx -comment -(string -meta.embedded)",
+	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded)",
 	"patterns": [
 		{
-			"begin": "/\\*html\\*/\\s*`",
+			"comment": "Template literal HTML precedido por comentario /*html*/",
+			"begin": "(/\\*\\s*html\\s*\\*/)\\s*(`)",
+			"beginCaptures": {
+				"1": { "name": "comment.block.html-template.js" },
+				"2": { "name": "punctuation.definition.string.template.begin.js string.template.html.js" }
+			},
 			"end": "`",
-			"name": "string.quoted.template.html.js",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.template.end.js string.template.html.js" }
+			},
+			"name": "string.template.html.js",
 			"patterns": [
 				{
 					"comment": "Expresiones ${} con máxima prioridad - se aplican antes que las reglas HTML",
-					"begin": "(\\$\\{)",
+					"begin": "\\$\\{",
 					"beginCaptures": {
-						"1": { "name": "punctuation.section.embedded.begin.js" }
+						"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
 					},
-					"end": "(\\})",
+					"end": "\\}",
 					"endCaptures": {
-						"1": { "name": "punctuation.section.embedded.end.js" }
+						"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
 					},
-					"name": "source.js.embedded.expression",
+					"name": "meta.template.expression.js",
 					"patterns": [
 						{
 							"comment": "Expresiones ${} anidadas",
-							"begin": "(\\$\\{)",
+							"begin": "\\$\\{",
 							"beginCaptures": {
-								"1": {
-									"name": "punctuation.section.embedded.begin.js"
-								}
+								"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
 							},
-							"end": "(\\})",
+							"end": "\\}",
 							"endCaptures": {
-								"1": {
-									"name": "punctuation.section.embedded.end.js"
-								}
+								"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
 							},
-							"name": "source.js.embedded.expression",
-							"patterns": [{ "include": "$self" }]
+							"name": "meta.template.expression.js",
+							"patterns": [
+								{ "include": "$self" }
+							]
 						},
 						{ "include": "source.js" }
 					]
 				},
 				{
-					"comment": "HTML con patrones personalizados para manejar ${} en atributos",
+					"comment": "Comentarios HTML",
+					"begin": "<!--",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.comment.html" }
+					},
+					"end": "-->",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.comment.html" }
+					},
+					"name": "comment.block.html",
 					"patterns": [
 						{
-							"comment": "Tags HTML con atributos que pueden contener ${}",
-							"begin": "(<)([a-zA-Z0-9:-]+)",
+							"comment": "Expresiones ${} dentro de comentarios HTML",
+							"begin": "\\$\\{",
 							"beginCaptures": {
-								"1": {
-									"name": "punctuation.definition.tag.begin.html"
-								},
-								"2": { "name": "entity.name.tag.html" }
+								"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
 							},
-							"end": "(>)",
+							"end": "\\}",
 							"endCaptures": {
-								"1": {
-									"name": "punctuation.definition.tag.end.html"
-								}
+								"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
 							},
-							"name": "meta.tag.html",
+							"name": "meta.template.expression.js",
+							"patterns": [
+								{ "include": "source.js" }
+							]
+						}
+					]
+				},
+				{
+					"comment": "DOCTYPE declaration",
+					"match": "<!DOCTYPE\\s+[^>]*>",
+					"name": "meta.tag.sgml.doctype.html"
+				},
+				{
+					"comment": "Tags de apertura y auto-cerrado",
+					"begin": "(<)([a-zA-Z][a-zA-Z0-9:-]*)",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.tag.begin.html" },
+						"2": { "name": "entity.name.tag.html" }
+					},
+					"end": "(/?)(>)",
+					"endCaptures": {
+						"1": { "name": "punctuation.definition.tag.html" },
+						"2": { "name": "punctuation.definition.tag.end.html" }
+					},
+					"name": "meta.tag.html",
+					"patterns": [
+						{
+							"comment": "Expresiones ${} en atributos - máxima prioridad",
+							"begin": "\\$\\{",
+							"beginCaptures": {
+								"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
+							},
+							"end": "\\}",
+							"endCaptures": {
+								"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
+							},
+							"name": "meta.template.expression.js",
+							"patterns": [
+								{ "include": "source.js" }
+							]
+						},
+						{
+							"comment": "Atributos con valores entre comillas dobles",
+							"begin": "\\b([a-zA-Z:_][a-zA-Z0-9:._-]*)\\s*(=)\\s*(\")",
+							"beginCaptures": {
+								"1": { "name": "entity.other.attribute-name.html" },
+								"2": { "name": "punctuation.separator.key-value.html" },
+								"3": { "name": "punctuation.definition.string.begin.html" }
+							},
+							"end": "\"",
+							"endCaptures": {
+								"0": { "name": "punctuation.definition.string.end.html" }
+							},
+							"name": "string.quoted.double.html",
 							"patterns": [
 								{
-									"comment": "Expresiones ${} en atributos con prioridad sobre valores de atributos",
-									"begin": "(\\$\\{)",
+									"comment": "Expresiones ${} dentro de valores de atributos",
+									"begin": "\\$\\{",
 									"beginCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.begin.js"
-										}
+										"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
 									},
-									"end": "(\\})",
+									"end": "\\}",
 									"endCaptures": {
-										"1": {
-											"name": "punctuation.section.embedded.end.js"
-										}
+										"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
 									},
-									"name": "source.js.embedded.expression"
-								},
-								{
-									"comment": "Nombres de atributos",
-									"match": "\\b([a-zA-Z-]+)(?=\\s*=)",
-									"name": "entity.other.attribute-name.html"
-								},
-								{
-									"comment": "Valores de atributos con comillas dobles",
-									"begin": "=\\s*(\")",
-									"beginCaptures": {
-										"1": {
-											"name": "punctuation.definition.string.begin.html"
-										}
-									},
-									"end": "(\")",
-									"endCaptures": {
-										"1": {
-											"name": "punctuation.definition.string.end.html"
-										}
-									},
-									"name": "string.quoted.double.html",
+									"name": "meta.template.expression.js",
 									"patterns": [
-										{
-											"comment": "Expresiones ${} dentro de valores de atributos con comillas dobles",
-											"begin": "(\\$\\{)",
-											"beginCaptures": {
-												"1": {
-													"name": "punctuation.section.embedded.begin.js"
-												}
-											},
-											"end": "(\\})",
-											"endCaptures": {
-												"1": {
-													"name": "punctuation.section.embedded.end.js"
-												}
-											},
-											"name": "source.js.embedded.expression",
-											"patterns": [
-												{ "include": "source.js" }
-											]
-										}
+										{ "include": "source.js" }
 									]
 								},
 								{
-									"comment": "Valores de atributos con comillas simples",
-									"begin": "=\\s*(')",
-									"beginCaptures": {
-										"1": {
-											"name": "punctuation.definition.string.begin.html"
-										}
-									},
-									"end": "(')",
-									"endCaptures": {
-										"1": {
-											"name": "punctuation.definition.string.end.html"
-										}
-									},
-									"name": "string.quoted.single.html",
-									"patterns": [
-										{
-											"comment": "Expresiones ${} dentro de valores de atributos con comillas simples",
-											"begin": "(\\$\\{)",
-											"beginCaptures": {
-												"1": {
-													"name": "punctuation.section.embedded.begin.js"
-												}
-											},
-											"end": "(\\})",
-											"endCaptures": {
-												"1": {
-													"name": "punctuation.section.embedded.end.js"
-												}
-											},
-											"name": "source.js.embedded.expression",
-											"patterns": [
-												{ "include": "source.js" }
-											]
-										}
-									]
+									"comment": "Entidades HTML",
+									"match": "&[a-zA-Z][a-zA-Z0-9]*;",
+									"name": "constant.character.entity.html"
 								}
 							]
 						},
 						{
-							"comment": "Tags de cierre",
-							"match": "(</)([a-zA-Z0-9:-]+)(>)",
-							"captures": {
-								"1": {
-									"name": "punctuation.definition.tag.begin.html"
+							"comment": "Atributos con valores entre comillas simples",
+							"begin": "\\b([a-zA-Z:_][a-zA-Z0-9:._-]*)\\s*(=)\\s*(')",
+							"beginCaptures": {
+								"1": { "name": "entity.other.attribute-name.html" },
+								"2": { "name": "punctuation.separator.key-value.html" },
+								"3": { "name": "punctuation.definition.string.begin.html" }
+							},
+							"end": "'",
+							"endCaptures": {
+								"0": { "name": "punctuation.definition.string.end.html" }
+							},
+							"name": "string.quoted.single.html",
+							"patterns": [
+								{
+									"comment": "Expresiones ${} dentro de valores de atributos",
+									"begin": "\\$\\{",
+									"beginCaptures": {
+										"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
+									},
+									"end": "\\}",
+									"endCaptures": {
+										"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
+									},
+									"name": "meta.template.expression.js",
+									"patterns": [
+										{ "include": "source.js" }
+									]
 								},
-								"2": { "name": "entity.name.tag.html" },
-								"3": {
-									"name": "punctuation.definition.tag.end.html"
+								{
+									"comment": "Entidades HTML",
+									"match": "&[a-zA-Z][a-zA-Z0-9]*;",
+									"name": "constant.character.entity.html"
 								}
-							}
+							]
 						},
 						{
-							"comment": "Contenido HTML general",
-							"include": "text.html.basic"
+							"comment": "Atributos sin valores (booleanos)",
+							"match": "\\b[a-zA-Z:_][a-zA-Z0-9:._-]*\\b(?!\\s*=)",
+							"name": "entity.other.attribute-name.html"
+						},
+						{
+							"comment": "Atributos con valores sin comillas",
+							"begin": "\\b([a-zA-Z:_][a-zA-Z0-9:._-]*)\\s*(=)\\s*(?![\"'])",
+							"beginCaptures": {
+								"1": { "name": "entity.other.attribute-name.html" },
+								"2": { "name": "punctuation.separator.key-value.html" }
+							},
+							"end": "(?=\\s|>|/>)",
+							"name": "string.unquoted.html",
+							"patterns": [
+								{
+									"comment": "Expresiones ${} en valores sin comillas",
+									"begin": "\\$\\{",
+									"beginCaptures": {
+										"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
+									},
+									"end": "\\}",
+									"endCaptures": {
+										"0": { "name": "punctuation.definition.template-expression.end.js keyword.other.template.js" }
+									},
+									"name": "meta.template.expression.js",
+									"patterns": [
+										{ "include": "source.js" }
+									]
+								}
+							]
 						}
 					]
+				},
+				{
+					"comment": "Tags de cierre",
+					"match": "(</)([a-zA-Z][a-zA-Z0-9:-]*)(>)",
+					"captures": {
+						"1": { "name": "punctuation.definition.tag.begin.html" },
+						"2": { "name": "entity.name.tag.html" },
+						"3": { "name": "punctuation.definition.tag.end.html" }
+					}
+				},
+				{
+					"comment": "Entidades HTML en contenido",
+					"match": "&[a-zA-Z][a-zA-Z0-9]*;",
+					"name": "constant.character.entity.html"
+				},
+				{
+					"comment": "Contenido de texto HTML",
+					"match": "[^<$]+",
+					"name": "text.html"
 				}
 			]
 		}

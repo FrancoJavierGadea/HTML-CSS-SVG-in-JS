@@ -1,29 +1,55 @@
 {
-    "name": "template-comment-highlighter",
-    "displayName": "Template Comment Highlighter",
-    "description": "Highlight template strings with /*html*/ or /*svg*/ as HTML or SVG inside JS/TS files",
+    "name": "html-css-svg-in-js",
+    "displayName": "HTML CSS SVG in JS",
+    "description": "Syntax highlighting for inline HTML, CSS, and SVG in JavaScript and TypeScript template strings using /*html*/, /*css*/ or /*svg*/.",
     "version": "0.0.1",
-    "publisher": "Franco Javier Gadea",
+    "publisher": "1812",
+    "author": "Franco Javier Gadea",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/FrancoJavierGadea/HTML-CSS-SVG-in-JS"
+    },
+    "keywords": [ "html", "css", "svg", "syntax highlighting", "template strings", "inline html", "inline css", "inline svg", "javascript", "typescript", "jsx", "tsx", "vscode extension"],
+    "devDependencies": {
+        "@vscode/vsce": "^3.6.0"
+    },
+    "scripts": {
+        "build": "vsce package --out dist/html-css-svg-in-js-0.0.1.vsix"
+    },
     "engines": {
         "vscode": "^1.85.0"
     },
-    "categories": ["Programming Languages"],
+    "categories": [
+        "Programming Languages"
+    ],
     "contributes": {
         "grammars": [
             {
                 "scopeName": "template.comment.html.injection",
                 "path": "./syntaxes/inyections-html-in-js.json",
-                "injectTo": ["source.js", "source.ts", "source.tsx"]
+                "injectTo": [
+                    "source.js",
+                    "source.ts",
+                    "source.tsx"
+                ]
             },
             {
                 "scopeName": "template.comment.css.injection",
                 "path": "./syntaxes/inyections-css-in-js.json",
-                "injectTo": ["source.js", "source.ts", "source.tsx"]
+                "injectTo": [
+                    "source.js",
+                    "source.ts",
+                    "source.tsx"
+                ]
             },
             {
                 "scopeName": "template.comment.svg.injection",
                 "path": "./syntaxes/inyections-svg-in-js.json",
-                "injectTo": ["source.js", "source.ts", "source.tsx"]
+                "injectTo": [
+                    "source.js",
+                    "source.ts",
+                    "source.tsx"
+                ]
             }
         ]
     }
