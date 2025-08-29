@@ -20,7 +20,7 @@
 				{
 					"comment": "Expresiones ${} con máxima prioridad - se aplican antes que las reglas HTML",
 					"begin": "\\$\\{",
-					"name": "meta.template.expression.js meta.embedded.block.html",
+					"name": "meta.template.expression.js",
 					"beginCaptures": {
 						"0": { "name": "punctuation.definition.template-expression.begin.js keyword.other.template.js" }
 					},
