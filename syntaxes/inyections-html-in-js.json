@@ -19,7 +19,7 @@
 			"contentName": "meta.embedded.block.html",
 			"patterns": [
 				{
-					"include": "text.html.basic"
+					"include": "text.html.withjs"
 				}
 			]
 		}

@@ -50,6 +50,10 @@
 #### JavaScript grammar
 
 - [source.js](https://github.com/microsoft/vscode/blob/main/extensions/javascript/syntaxes/JavaScript.tmLanguage.json)
+
+- [source.js#ttemplate-substitution-element](https://github.com/microsoft/vscode/blob/e83d239a0a21214360b355038c6a71a301e4b344/extensions/javascript/syntaxes/JavaScript.tmLanguage.json#L4809)
+
+
 - [source.js.jsx](https://github.com/microsoft/vscode/blob/main/extensions/javascript/syntaxes/JavaScriptReact.tmLanguage.json)
 
 #### TypeScript grammar

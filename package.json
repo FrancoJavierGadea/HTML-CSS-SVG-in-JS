@@ -26,6 +26,10 @@
     "contributes": {
         "grammars": [
             {
+                "path": "./syntaxes/html-with-js.tmLanguage.json",
+                "scopeName": "text.html.withjs"
+            },
+            {
                 "scopeName": "template.comment.html.injection",
                 "path": "./syntaxes/inyections-html-in-js.json",
                 "injectTo": ["source.js", "source.ts", "source.tsx"],
