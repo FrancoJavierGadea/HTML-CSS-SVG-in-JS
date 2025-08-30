@@ -2,11 +2,17 @@
 
 ![preview](./assets/preview.webp)
 
+## 📝 Description
+
 Highlight **template strings** in `JavaScript` and `TypeScript` files with `HTML`, `CSS`, `SVG` or `XML` syntax highlighting using **tagged comments**.
 
-> [**VS Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=FrancoJavierGadea.HTML-CSS-SVG-in-JS)
+<br>
 
-> [**Github**](https://github.com/FrancoJavierGadea/HTML-CSS-SVG-in-JS)
+## 🔗 Links
+
+- [**Visual Studio Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=1812.vscode-html-css-svg-in-js)
+
+- [**Github**](https://github.com/extensions-1812/vscode-html-css-svg-in-js)
 
 <br>
 
