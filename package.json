@@ -26,15 +26,39 @@
     "contributes": {
         "grammars": [
             {
-                "path": "./syntaxes/html-with-js.tmLanguage.json",
+                "path": "./syntaxes/languages/html-with-js.tmLanguage.json",
                 "scopeName": "text.html.withjs"
             },
             {
+                "path": "./syntaxes/languages/xml-with-js.tmLanguage.json",
+                "scopeName": "text.xml.withjs"
+            },
+            {
+                "path": "./syntaxes/languages/css-with-js.tmLanguage.json",
+                "scopeName": "source.css.withjs"
+            },
+            {
                 "scopeName": "template.comment.html.injection",
-                "path": "./syntaxes/inyections-html-in-js.json",
+                "path": "./syntaxes/inyections/inyections-html-in-js.json",
                 "injectTo": ["source.js", "source.ts", "source.tsx"],
                 "embeddedLanguages": {
                     "meta.embedded.block.html": "html"
+                }
+            },
+            {
+                "scopeName": "template.comment.xml.injection",
+                "path": "./syntaxes/inyections/inyections-xml-in-js.json",
+                "injectTo": ["source.js", "source.ts", "source.tsx"],
+                "embeddedLanguages": {
+                    "meta.embedded.block.xml": "xml"
+                }
+            },
+            {
+                "scopeName": "template.comment.css.injection",
+                "path": "./syntaxes/inyections/inyections-css-in-js.json",
+                "injectTo": ["source.js", "source.ts", "source.tsx"],
+                "embeddedLanguages": {
+                    "meta.embedded.block.css": "css"
                 }
             }
         ],

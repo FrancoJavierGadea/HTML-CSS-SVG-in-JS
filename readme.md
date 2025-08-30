@@ -2,7 +2,9 @@
 
 ![preview](./assets/preview.webp)
 
-Highlight **template strings** in `JavaScript` and `TypeScript` files with `HTML`, `CSS`, or `SVG` syntax highlighting using **tagged comments**.
+Highlight **template strings** in `JavaScript` and `TypeScript` files with `HTML`, `CSS`, `SVG` or `XML` syntax highlighting using **tagged comments**.
+
+> [**VS Code Marketplace**](https://marketplace.visualstudio.com/items?itemName=FrancoJavierGadea.HTML-CSS-SVG-in-JS)
 
 > [**Github**](https://github.com/FrancoJavierGadea/HTML-CSS-SVG-in-JS)
 
@@ -15,6 +17,7 @@ Colorizes template strings that start with:
 - `/*html*/` highlighted as `HTML`
 - `/*css*/` highlighted as `CSS`
 - `/*svg*/` highlighted as `SVG`
+- `/*xml*/` highlighted as `XML`
 
 Works in `.js`, `.ts`, `.jsx`, and `.tsx` files.
 
@@ -22,30 +25,30 @@ No extra setup required — just install and start coding.
 
 ### 📝 Snippets
 
-Quickly insert template literals for `HTML`, `CSS`, and `SVG`:
+Quickly insert template literals for `HTML`, `CSS`, `SVG` and `XML` using the following snippets:
 
 - `html template block`:
 
     ```js
-    /*html*/`
-    
-    `
+    /*html*/``
     ```
 
 - `css template block`:
 
     ```js
-    /*css*/`
-    
-    `
+    /*css*/``
     ```
 
 - `svg template block`:
 
     ```js
-    /*svg*/`
-    
-    `
+    /*svg*/``
+    ```
+
+- `xml template block`:
+
+    ```js
+    /*xml*/``
     ```
 
 <br>
@@ -55,14 +58,14 @@ Quickly insert template literals for `HTML`, `CSS`, and `SVG`:
 ```js
 const button = /*html*/`
     <button class="primary">
-      Click Me
+      ${'Click me !'}
     </button>
 `;
 
 const styles = /*css*/`
     .primary {
         background: #007bff;
-        color: white;
+        color: ${white};
         padding: 8px 12px;
         border-radius: 4px;
     }
@@ -70,8 +73,23 @@ const styles = /*css*/`
 
 const icon = /*svg*/`
 	<svg viewBox="0 0 24 24">
-		<circle cx="12" cy="12" r="10" fill="red" />
+		<circle cx="12" cy="12" r="10" fill="${'#007bff'}" />
 	</svg>
+`;
+
+const xml = /*xml*/`
+    <?xml version="1.0"?>
+    <customers>
+        <customer id="55000">
+            <name>Charter Group</name>
+            <address>
+                <street>100 Main</street>
+                <city>Framingham</city>
+                <state>MA</state>
+                <zip>01701</zip>
+            </address>
+        </customer>
+    </customers>
 `;
 ```
 

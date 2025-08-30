@@ -31,7 +31,7 @@
      inkscape:document-units="px"
      inkscape:zoom="0.46527778"
      inkscape:cx="621.13433"
-     inkscape:cy="254.68657"
+     inkscape:cy="256.83582"
      inkscape:window-width="1366"
      inkscape:window-height="697"
      inkscape:window-x="-8"
@@ -82,24 +82,29 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:300px;font-family:Serif;-inkscape-font-specification:Serif;text-align:start;letter-spacing:2px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);display:inline;fill:#000000;fill-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-size:100px;font-family:Caveat;-inkscape-font-specification:Caveat;text-align:start;letter-spacing:2px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#0d610d;fill-opacity:1"
-       x="60.623772"
-       y="131.18109"
+       style="font-size:80px;font-family:Caveat;-inkscape-font-specification:Caveat;text-align:start;letter-spacing:2px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#0d610d;fill-opacity:1"
+       x="64.623772"
+       y="103.84251"
        id="text2-8"><tspan
          sodipodi:role="line"
          id="tspan2-8"
-         x="60.623772"
-         y="131.18109"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:100px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1">/*html*/</tspan><tspan
+         x="64.623772"
+         y="103.84251"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1">/*html*/</tspan><tspan
          sodipodi:role="line"
-         x="60.623772"
-         y="258.104"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:100px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1"
+         x="64.623772"
+         y="205.38083"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1"
          id="tspan4">/*css*/</tspan><tspan
          sodipodi:role="line"
-         x="60.623772"
-         y="385.02689"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:100px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1"
+         x="64.623772"
+         y="306.91913"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1"
+         id="tspan1">/*xml*/</tspan><tspan
+         sodipodi:role="line"
+         x="64.623772"
+         y="408.45746"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Consolas;-inkscape-font-specification:'Consolas Italic';fill:#0d610d;fill-opacity:1"
          id="tspan5">/*svg*/</tspan></text>
   </g>
   <metadata

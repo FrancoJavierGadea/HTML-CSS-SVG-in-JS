@@ -1,0 +1,27 @@
+{
+	"name": "CSS-in-JS",
+	"scopeName": "template.comment.css.injection",
+	"comment": "",
+	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded), L:source.tsx -comment -(string -meta.embedded)",
+	"patterns": [
+		{
+			"comment": "Template literal css precedido por comentario /*css*/",
+			"name": "string.template.css.js",
+			"begin": "(/\\*\\s*css\\s*\\*/)\\s*(`)",
+			"beginCaptures": {
+				"1": { "name": "comment.block.css-template.js" },
+				"2": { "name": "punctuation.definition.string.template.begin.js string.template.css.js" }
+			},
+			"end": "(`)",
+			"endCaptures": {
+				"1": { "name": "punctuation.definition.string.template.end.js string.template.css.js" }
+			},
+			"contentName": "meta.embedded.block.css",
+			"patterns": [
+				{
+					"include": "source.css.withjs"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"name": "XML-in-JS",
+	"scopeName": "template.comment.xml.injection",
+	"comment": "",
+	"injectionSelector": "L:source.js -comment -(string -meta.embedded), L:source.ts -comment -(string -meta.embedded), L:source.tsx -comment -(string -meta.embedded)",
+	"patterns": [
+		{
+			"comment": "Template literal xml precedido por comentario /*xml*/",
+			"name": "string.template.xml.js",
+			"begin": "(/\\*\\s*(?:xml|svg)\\s*\\*/)\\s*(`)",
+			"beginCaptures": {
+				"1": { "name": "comment.block.xml-template.js" },
+				"2": { "name": "punctuation.definition.string.template.begin.js string.template.xml.js" }
+			},
+			"end": "(`)",
+			"endCaptures": {
+				"1": { "name": "punctuation.definition.string.template.end.js string.template.xml.js" }
+			},
+			"contentName": "meta.embedded.block.xml",
+			"patterns": [
+				{
+					"include": "text.xml.withjs"
+				}
+			]
+		}
+	]
+}

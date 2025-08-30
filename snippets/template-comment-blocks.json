@@ -13,5 +13,10 @@
 		"prefix": "svg template block",
 		"body": ["/*svg*/`", "$0", "`"],
 		"description": "Insert /*svg*/ template block"
+	},
+	"XML block": {
+		"prefix": "xml template block",
+		"body": ["/*xml*/`", "$0", "`"],
+		"description": "Insert /*xml*/ template block"
 	}
 }

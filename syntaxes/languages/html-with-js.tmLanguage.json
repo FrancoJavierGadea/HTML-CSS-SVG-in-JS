@@ -1834,7 +1834,7 @@
 									"name": "source.css",
 									"patterns": [
 										{
-											"include": "source.css"
+											"include": "source.css.withjs"
 										}
 									]
 								}
